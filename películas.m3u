@@ -1,1 +1,8 @@
 #EXTM3U
+# MASTER TV - 30000 Peliculas - Canales Cine 24H Gratis
+#EXTINF:-1 group-title="PELICULAS",Pluto TV Cine Estelar
+https://i.mjh.nz/PlutoTV/es.m3u8
+#EXTINF:-1 group-title="PELICULAS",Samsung TV Plus Cine
+https://i.mjh.nz/SamsungTVPlus/es.m3u8
+#EXTINF:-1 group-title="PELICULAS",Plex Cine Gratis
+https://i.mjh.nz/Plex/es.m3u8
