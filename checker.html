@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASTER TV CHECKER</title>
+<style>
+body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:10px}
+h1{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;padding:12px;border-radius:8px;text-align:center;font-size:18px}
+.card{background:#1e1e1e;border-radius:10px;padding:12px;margin:10px 0;border-left:5px solid #ff7b00}
+input{width:100%;padding:12px;border-radius:8px;border:1px solid #333;background:#222;color:#fff;margin:5px 0}
+.btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-top:8px}
+.btn-orange{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000}
+.btn-green{background:#00ff88;color:#000}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+th{background:#222;color:#ff7b00;padding:8px;text-align:left}
+td{padding:8px;border-bottom:1px solid #222;word-break:break-all}
+.live{color:#00ff88;font-weight:900}
+.dead{color:#ff4444;font-weight:900}
+.log{background:#000;padding:10px;border-radius:6px;font-size:11px;height:120px;overflow:auto;border:1px solid #333;color:#aaa;margin-top:10px}
+</style>
+</head>
+<body>
+<h1>🔍 MASTER TV CHECKER<br><small>TESTEA M3U8 - LIVE / DEAD</small></h1>
+<div class="card">
+<input id="m3uUrl" placeholder="Pega URL m3u" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u">
+<button class="btn btn-orange" onclick="cargarM3U()">📥 CARGAR Y ANALIZAR LISTA</button>
+<input type="file" id="fileInput" accept=".m3u,.m3u8,.txt">
+</div>
+<div class="card" id="stats" style="display:none">
+<div style="display:flex;gap:10px;text-align:center">
+<div style="flex:1;background:#111;padding:10px;border-radius:6px"><div id="total" style="font-size:20px;font-weight:900">0</div><div style="font-size:10px;color:#888">TOTAL</div></div>
+<div style="flex:1;background:#111;padding:10px;border-radius:6px"><div id="live" style="font-size:20px;color:#00ff88;font-weight:900">0</div><div style="font-size:10px;color:#888">LIVE</div></div>
+<div style="flex:1;background:#111;padding:10px;border-radius:6px"><div id="dead" style="font-size:20px;color:#ff4444;font-weight:900">0</div><div style="font-size:10px;color:#888">DEAD</div></div>
+</div>
+<div class="log" id="log"></div>
+<button class="btn btn-green" id="btnExport" style="display:none" onclick="exportarLive()">📋 COPIAR SOLO CANALES LIVE</button>
+</div>
+<div class="card">
+<table id="tabla"><tr><th>#</th><th>Canal</th><th>URL</th><th>Estado</th></tr></table>
+</div>
+<script>
+let canales=[],soloLive=[];
+function log(m){let l=document.getElementById('log');l.innerHTML+=m+"<br>";l.scrollTop=l.scrollHeight;}
+async function cargarM3U(){
+ let url=document.getElementById('m3uUrl').value.trim();
+ if(!url)return;log('Cargando: '+url);
+ try{let r=await fetch(url);let t=await r.text();parseM3U(t);}catch(e){
+  try{let p='https://api.allorigins.win/raw?url='+encodeURIComponent(url);let r=await fetch(p);let t=await r.text();parseM3U(t);}catch(e2){log('Error: '+e2);alert('Sube archivo manual');}
+ }
+}
+document.getElementById('fileInput').addEventListener('change',e=>{
+ let f=e.target.files[0];let reader=new FileReader();reader.onload=ev=>parseM3U(ev.target.result);reader.readAsText(f);
+});
+function parseM3U(text){
+ canales=[];soloLive=[];document.getElementById('tabla').innerHTML='<tr><th>#</th><th>Canal</th><th>URL</th><th>Estado</th></tr>';
+ let lines=text.split('\n');let cur='';let c=0;
+ lines.forEach(l=>{
+  l=l.trim();if(l.startsWith('#EXTINF')){let p=l.split(',');cur=p[p.length-1]||'Sin nombre';}else if(l.startsWith('http')){c++;canales.push({id:c,name:cur,url:l,status:'testing'});cur='';}
+ });
+ document.getElementById('stats').style.display='block';document.getElementById('total').innerText=canales.length;log(`${canales.length} canales encontrados`);renderTabla();testCanales();
+}
+function renderTabla(){
+ let t=document.getElementById('tabla');t.innerHTML='<tr><th>#</th><th>Canal</th><th>URL</th><th>Estado</th></tr>';
+ canales.forEach(c=>{
+  let tr=document.createElement('tr');tr.innerHTML=`<td>${c.id}</td><td>${c.name.substring(0,30)}</td><td style="font-size:10px;color:#888">${c.url.substring(0,50)}...</td><td id="st-${c.id}">TESTING...</td>`;t.appendChild(tr);
+ });
+}
+async function testCanal(c){
+ try{let controller=new AbortController();setTimeout(()=>controller.abort(),8000);let u='https://api.allorigins.win/raw?url='+encodeURIComponent(c.url);let r=await fetch(u,{signal:controller.signal});let txt=await r.text();if(txt.includes('#EXTM3U')||txt.includes('#EXT-X')||txt.length>100)return 'live';else return 'dead';}catch(e){return 'dead';}
+}
+async function testCanales(){
+ let live=0,dead=0;soloLive=[];
+ for(let i=0;i<canales.length;i++){
+  let c=canales[i];log(`Testeando ${c.id}/${canales.length}: ${c.name}...`);
+  let s=await testCanal(c);c.status=s;let el=document.getElementById('st-'+c.id);
+  if(s=='live'){live++;soloLive.push(c);if(el)el.innerHTML='<span class="live">LIVE ✅</span>';log(`✅ LIVE: ${c.name}`);}else{dead++;if(el)el.innerHTML='<span class="dead">DEAD ❌</span>';log(`❌ DEAD: ${c.name}`);}
+  document.getElementById('live').innerText=live;document.getElementById('dead').innerText=dead;await new Promise(r=>setTimeout(r,300));
+ }
+ log(`--- FINAL ${live} LIVE / ${dead} DEAD ---`);if(soloLive.length>0)document.getElementById('btnExport').style.display='block';
+}
+function exportarLive(){
+ if(soloLive.length==0)return;let m3u='#EXTM3U\n# LISTA LIMPIA '+new Date().toLocaleString()+'\n';soloLive.forEach(c=>{m3u+=`#EXTINF:-1,${c.name}\n${c.url}\n\n`;});navigator.clipboard.writeText(m3u);alert(`${soloLive.length} LIVE copiados`);
+}
+</script>
+</body>
+</html>
