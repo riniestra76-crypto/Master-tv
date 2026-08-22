@@ -1,19 +1,21 @@
 #EXTM3U
 #EXTINF:-1 group-title="MEXICO",Azteca Uno
-https://iptv-org.github.io/iptv/countries/mx.m3u
-#EXTM3U url-tvg="https://iptv-org.github.io/epg/guides/mx.xml"
-# MASTER TV ELITE - 3000 Canales Latinos - Fuentes Oficiales
-#EXTINF:-1 group-title="MEXICO",Azteca Uno HD
 https://azteca-uno-1-mx.samsung.wurl.tv/playlist.m3u8
-#EXTINF:-1 group-title="MEXICO",Azteca 7 HD
+#EXTINF:-1 group-title="MEXICO",Azteca 7
 https://azteca-7-1-mx.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 group-title="MEXICO",ADN 40
+https://adn-40-1-mx.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 group-title="MEXICO",Canal Once
-https://canalonce.iztelecom.cloud/live.m3u8
+https://canal-once-1-mx.samsung.wurl.tv/playlist.m3u8
 #EXTINF:-1 group-title="MEXICO",Canal 22
-https://canal22.iztelecom.cloud/live.m3u8
-#EXTINF:-1 group-title="PLUTO LATINO",Pluto TV Latino Pack - 100 Canales
-https://i.mjh.nz/PlutoTV/es.m3u8
-#EXTINF:-1 group-title="SAMSUNG LATINO",Samsung TV Plus Latino - 150 Canales
-https://i.mjh.nz/SamsungTVPlus/es.m3u8
-#EXTINF:-1 group-title="PLEX LATINO",Plex TV Latino - 100 Canales
-https://i.mjh.nz/Plex/es.m3u8
+https://canal-22-1-mx.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 group-title="MEXICO",Milenio TV
+https://milenio-television-1-mx.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 group-title="PLUTO",Pluto TV Cine Estelar
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f4ec05bff2f7e0007a5dc5b/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=0&deviceId=ccf0e3ae-a4b8-4f61-bdd2-5fd3d6a1c7b9&advertisingId=unknown&app_name=plutotv&appName=plutotv&profileFloor=&profileCeiling=
+#EXTINF:-1 group-title="PLUTO",Pluto TV Cine Accion
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5ef9c3dfe1e6d60007239a3f/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=0&deviceId=ccf0e3ae-a4b8-4f61-bdd2-5fd3d6a1c7b9&advertisingId=unknown&app_name=plutotv&appName=plutotv&profileFloor=&profileCeiling=
+#EXTINF:-1 group-title="PLUTO",Pluto TV Series
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5f54bb0d1235f40007fbacaf/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=0&deviceId=ccf0e3ae-a4b8-4f61-bdd2-5fd3d6a1c7b9&advertisingId=unknown&app_name=plutotv&appName=plutotv&profileFloor=&profileCeiling=
+#EXTINF:-1 group-title="PLUTO",Pluto TV Novelas
+https://service-stitcher.clusters.pluto.tv/v1/stitch/embed/hls/channel/5e4cf7d8a6b9d600072b0a8e/master.m3u8?deviceType=samsung-tvplus&deviceMake=samsung&deviceModel=samsung&deviceVersion=unknown&appVersion=unknown&deviceLat=0&deviceLon=0&deviceDNT=0&deviceId=ccf0e3ae-a4b8-4f61-bdd2-5fd3d6a1c7b9&advertisingId=unknown&app_name=plutotv&appName=plutotv&profileFloor=&profileCeiling=
