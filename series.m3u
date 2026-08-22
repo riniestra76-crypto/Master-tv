@@ -1,1 +1,8 @@
 #EXTM3U
+# MASTER TV - 58000 Series - Canales Series 24H Gratis
+#EXTINF:-1 group-title="SERIES",Pluto TV Series y Novelas
+https://i.mjh.nz/PlutoTV/es.m3u8
+#EXTINF:-1 group-title="SERIES",Samsung Series
+https://i.mjh.nz/SamsungTVPlus/es.m3u8
+#EXTINF:-1 group-title="SERIES",Plex Series
+https://i.mjh.nz/Plex/es.m3u8
