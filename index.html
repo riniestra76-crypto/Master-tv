@@ -5,55 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MASTER TV Bud Edition</title>
 <style>
-body{background:#101010;color:white;font-family:Arial;padding:15px}
-h1{color:#ff7b00;border-bottom:3px solid #ff7b00;padding-bottom:10px}
-.card{background:#1e1e1e;border-left:4px solid #ff7b00;padding:15px;margin:15px 0;border-radius:8px}
-input{padding:8px;border-radius:5px;border:none;margin:3px}
-button{background:#ff7b00;color:white;border:none;padding:10px 15px;border-radius:5px;font-weight:bold;cursor:pointer;margin:3px}
-a{color:#ff7b00;word-break:break-all}
-table{width:100%;border-collapse:collapse;margin-top:10px}
-th,td{padding:8px;text-align:left;border-bottom:1px solid #333}
-.m3u{width:100%;background:#000;color:#00ff00;padding:10px;border-radius:5px;border:1px solid #333;word-break:break-all}
+body{background:#0f0f0f;color:#fff;font-family:Arial;padding:12px;margin:0}
+h1{color:#ff7b00;border-bottom:3px solid #ff7b00;padding:10px 0}
+.card{background:#1c1c1c;border-left:4px solid #ff7b00;padding:14px;margin:12px 0;border-radius:8px}
+input,select{padding:8px;border-radius:5px;border:1px solid #444;background:#2a2a2a;color:#fff;margin:3px}
+button{background:#ff7b00;color:#fff;border:none;padding:9px 14px;border-radius:5px;font-weight:bold;cursor:pointer;margin:3px}
+.m3u{width:95%;background:#000;color:#0f0;padding:10px;border-radius:5px;border:1px solid #444;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#2a2a2a;color:#ff7b00;padding:8px;text-align:left}
+td{padding:8px;border-bottom:1px solid #2a2a2a;word-break:break-all}
+.small{font-size:11px;color:#aaa}
+a{color:#ff7b00}
 </style>
 </head>
 <body>
 <h1>📺 MASTER TV Bud Edition</h1>
-
 <div class="card">
 <h3>➕ Crear Seller (Revendedor)</h3>
-Usuario: <input id="sellerUser" placeholder="juan_seller"> Pass: <input id="sellerPass" value="1234" style="width:70px">
-<button onclick="alert('Seller creado: '+document.getElementById('sellerUser').value)">Crear Seller (-créditos)</button>
-<p><small>Seller puede crear sus propios clientes usando sus créditos.</small></p>
+Usuario: <input id="sellerUser" placeholder="juan_seller">
+Pass: <input id="sellerPass" value="1234" style="width:80px">
+Creditos: <input id="sellerCred" value="10" style="width:50px" type="number">
+<button onclick="crearSeller()">Crear Seller (-créditos)</button>
+<p class="small">Seller puede crear sus propios clientes usando sus créditos.</p>
 </div>
-
 <div class="card">
 <h3>👤 Crear Usuario Final (Cliente)</h3>
-Usuario: <input id="user" value="mirton"> Pass: <input value="1991" style="width:70px">
+Usuario: <input id="clientUser" value="mirton09">
+Pass: <input id="clientPass" value="1991" style="width:80px">
+Tipo: <select id="clientTipo"><option>CLIENTE 1M</option><option>CLIENTE 3M</option><option>CLIENTE 6M</option><option>CLIENTE 12M</option><option>PRUEBA 24H</option></select>
+<button onclick="crearCliente()">Crear Usuario</button>
+<p id="msgCliente" class="small" style="color:#0f0"></p>
 </div>
-
 <div class="card">
 <h3>🔗 Tu Lista Maestra BUD TV - Lista Latina Completa</h3>
-<p>Esta es la lista que le das a todos. Ya trae Canales Latinos + Pelis.</p>
-<input class="m3u" id="lista" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u" readonly>
+<input class="m3u" id="listaMaestra" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u" readonly>
 <br><br>
-<button onclick="navigator.clipboard.writeText(document.getElementById('lista').value);alert('Link copiado!')">Copiar Link M3U</button>
-<button onclick="window.open(document.getElementById('lista').value,'_blank')">Probar Lista</button>
-<p style="margin-top:10px">Tu Panel: <a href="https://riniestra76-crypto.github.io/Master-tv/">https://riniestra76-crypto.github.io/Master-tv/</a></p>
+<button onclick="navigator.clipboard.writeText(document.getElementById('listaMaestra').value);alert('✅ Link copiado')">Copiar Link M3U</button>
+<button onclick="window.open(document.getElementById('listaMaestra').value,'_blank')">Probar Lista</button>
+<p>Tu Panel: <a href="https://riniestra76-crypto.github.io/Master-tv/">https://riniestra76-crypto.github.io/Master-tv/</a></p>
 </div>
-
 <div class="card">
 <h3>📋 Sellers y Usuarios Creados</h3>
-<table>
-<tr><th>Usuario</th><th>Tipo</th><th>Creditos</th><th>Link M3U</th></tr>
-<tr><td>mirton</td><td>CLIENTE 1M</td><td>1</td><td style="font-size:11px">https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u</td></tr>
+<table id="tablaUsuarios">
+<tr><th>Usuario</th><th>Tipo</th><th>Creditos</th><th>Link M3U</th><th>Acción</th></tr>
+<tr><td>mirton</td><td>CLIENTE 1M</td><td>1</td><td class="small">https://raw.githubusercontent.com/.../latinos.m3u</td><td><button onclick="this.parentElement.parentElement.remove()" style="background:#444">Borrar</button></td></tr>
 </table>
 </div>
-
 <div class="card">
 <h3>✅ Para TiviMate</h3>
-<p><b>M3U:</b> https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u</p>
-<p><b>EPG México:</b> https://iptv-org.github.io/epg/guides/mx.xml</p>
+<p><b>M3U:</b><br><span style="color:#0f0">https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u</span></p>
+<p><b>EPG:</b><br>https://iptv-org.github.io/epg/guides/mx.xml</p>
 </div>
-
+<script>
+function crearSeller(){
+  const u=document.getElementById('sellerUser').value;
+  const c=document.getElementById('sellerCred').value;
+  const p=document.getElementById('sellerPass').value;
+  if(!u){alert('Pon nombre de seller');return;}
+  const tabla=document.getElementById('tablaUsuarios');
+  const row=tabla.insertRow(-1);
+  row.innerHTML=`<td>${u}</td><td>SELLER</td><td>${c}</td><td class="small">.../latinos.m3u</td><td><button onclick="this.parentElement.parentElement.remove()" style="background:#444">Borrar</button></td>`;
+  document.getElementById('sellerUser').value='';alert('✅ Seller '+u+' creado con '+c+' creditos');
+}
+function crearCliente(){
+  const u=document.getElementById('clientUser').value;
+  const tipo=document.getElementById('clientTipo').value;
+  const p=document.getElementById('clientPass').value;
+  if(!u){alert('Pon nombre');return;}
+  const tabla=document.getElementById('tablaUsuarios');
+  const row=tabla.insertRow(-1);
+  const cred=tipo.includes('1M')?'1':tipo.includes('3M')?'3':'1';
+  row.innerHTML=`<td>${u}</td><td>${tipo}</td><td>${cred}</td><td class="small">.../latinos.m3u?user=${u}</td><td><button onclick="this.parentElement.parentElement.remove()" style="background:#444">Borrar</button></td>`;
+  document.getElementById('msgCliente').innerText='✅ Usuario '+u+' creado '+tipo;
+  document.getElementById('clientUser').value='';
+}
+</script>
 </body>
 </html>
