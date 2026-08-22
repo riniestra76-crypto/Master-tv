@@ -3,108 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MASTER TV ELITE PRO</title>
+<title>MASTER TV Bud Edition</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0e0e0e;color:#fff;font-family:Arial}
-.top{background:#1a1a1a;border-bottom:3px solid #ff7b00;padding:12px;text-align:center}
-.top h1{margin:0;color:#ff7b00;font-size:20px}
-.cred-bar{background:#ff7b00;color:#000;padding:10px;text-align:center;font-weight:900;font-size:18px}
-.stats{display:flex;gap:6px;padding:8px;background:#111}
-.stat{flex:1;background:#1e1e1e;border:1px solid #333;border-radius:8px;padding:8px;text-align:center}
-.stat b{color:#ff7b00;font-size:20px;display:block}
-.stat span{font-size:11px;color:#ccc}
-.card{background:#1c1c1c;margin:8px;border-radius:10px;padding:12px;border:1px solid #2a2a2a}
-.card-title{color:#ff7b00;font-weight:bold;font-size:14px;margin-bottom:10px;border-bottom:1px solid #333;padding-bottom:6px}
-input,select{width:100%;padding:12px;margin:6px 0;border-radius:8px;border:1px solid #444;background:#2b2b2b;color:#fff;font-size:14px}
-.btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:900;font-size:14px;cursor:pointer;margin-top:8px}
+body{margin:0;background:#0f0f0f;color:#fff;font-family:Arial;padding:10px}
+h1{color:#ff7b00;border-bottom:3px solid #ff7b00;padding-bottom:8px;margin:10px 0;font-size:22px;text-align:center}
+.creditos{background:#ff7b00;color:#000;padding:8px;text-align:center;font-weight:900;border-radius:6px;margin:8px 0;font-size:18px}
+.card{background:#1c1c1c;border-radius:8px;padding:12px;margin:10px 0;border-left:4px solid #ff7b00}
+.card h3{margin:0 0 8px 0;color:#ff7b00;font-size:15px}
+input,select{width:100%;padding:10px;margin:5px 0;border-radius:6px;border:1px solid #444;background:#2a2a2a;color:#fff}
+.btn{width:100%;padding:11px;border:none;border-radius:6px;font-weight:900;cursor:pointer;margin-top:8px}
 .btn-orange{background:#ff7b00;color:#000}
-.btn-gray{background:#333;color:#fff;border:1px solid #555}
-.m3u{background:#000;color:#00ff00;padding:10px;border-radius:6px;border:1px solid #333;font-size:11px;word-break:break-all;margin:8px 0}
-.success{background:#003300;border:1px solid #00ff00;color:#00ff00;padding:8px;border-radius:6px;margin-top:8px;font-size:13px;display:none}
-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.btn-dark{background:#333;color:#fff;border:1px solid #555}
+.link-box{background:#000;color:#00ff00;padding:10px;border:1px solid #333;border-radius:6px;word-break:break-all;font-size:12px;margin:8px 0;display:none}
+.show{display:block !important}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
 th{background:#2a2a2a;color:#ff7b00;padding:6px;text-align:left}
-td{padding:6px;border-bottom:1px solid #2a2a2a}
+td{padding:6px;border-bottom:1px solid #2a2a2a;word-break:break-all}
 </style>
 </head>
 <body>
-<div class="top"><h1>📺 MASTER TV - ELITE EDITION PRO</h1></div>
-<div class="cred-bar">💰 CRÉDITOS: <span id="creditos">500000</span></div>
-<div class="stats">
-<div class="stat"><b>3000</b><span>Canales Latinos</span></div>
-<div class="stat"><b>58000</b><span>Series</span></div>
-<div class="stat"><b>30000</b><span>Películas</span></div>
-</div>
+<h1>📺 MASTER TV Bud Edition</h1>
+<div class="creditos">💰 Créditos: <span id="creditos">500000</span></div>
 <div class="card">
-<div class="card-title">➕ Crear Seller (Revendedor)</div>
-<input id="sellerUser" placeholder="Usuario Seller: ej juan_revendedor">
-<input id="sellerPass" placeholder="Contraseña" value="1234">
-<input id="sellerCred" type="number" value="50">
+<h3>➕ Crear Seller (Revendedor)</h3>
+<input id="sellerUser" placeholder="Usuario seller">
+<input id="sellerPass" placeholder="Pass" value="1234">
+Créditos a dar: <input id="sellerCred" type="number" value="50">
 <button class="btn btn-orange" onclick="crearSeller()">CREAR SELLER</button>
-<div id="msgSeller" class="success"></div>
+<div id="sellerLink" class="link-box"></div>
 </div>
 <div class="card">
-<div class="card-title">👤 Crear Usuario (1 a 12 Meses)</div>
-<input id="clientUser" placeholder="Usuario cliente">
+<h3>👤 Crear Usuario Final (Cliente)</h3>
+<input id="clientUser" placeholder="Usuario cliente ej: Tata">
 <input id="clientPass" placeholder="Contraseña" value="1234">
+Meses:
 <select id="clientMeses">
-<option value="1">1 MES - 1 Crédito</option><option value="2">2 MESES - 2 Créditos</option><option value="3">3 MESES - 3 Créditos</option><option value="4">4 MESES - 4 Créditos</option><option value="5">5 MESES - 5 Créditos</option><option value="6">6 MESES - 6 Créditos</option><option value="7">7 MESES - 7 Créditos</option><option value="8">8 MESES - 8 Créditos</option><option value="9">9 MESES - 9 Créditos</option><option value="10">10 MESES - 10 Créditos</option><option value="11">11 MESES - 11 Créditos</option><option value="12">12 MESES - 12 Créditos</option>
+<option value="1">1 MES</option><option value="2">2 MESES</option><option value="3">3 MESES</option><option value="4">4 MESES</option><option value="5">5 MESES</option><option value="6">6 MESES</option><option value="7">7 MESES</option><option value="8">8 MESES</option><option value="9">9 MESES</option><option value="10">10 MESES</option><option value="11">11 MESES</option><option value="12">12 MESES</option>
 </select>
-<select id="clientTipo"><option>Usuario Normal</option><option>DEMO Gratis 24H</option><option>DEMO Gratis 48H</option></select>
-<button class="btn btn-orange" onclick="crearCliente()">CREAR USUARIO FINAL</button>
-<button class="btn btn-gray" onclick="crearDemo()">🎁 CREAR DEMO GRATIS 24H</button>
-<div id="msgCliente" class="success"></div>
+Tipo:
+<select id="clientTipo">
+<option>Usuario Normal</option><option>DEMO Gratis 24H</option><option>DEMO Gratis 48H</option>
+</select>
+<button class="btn btn-orange" onclick="crearCliente()">CREAR USUARIO</button>
+<button class="btn btn-dark" onclick="crearDemo()">🎁 DEMO GRATIS</button>
+<div id="clientLink" class="link-box"></div>
 </div>
 <div class="card">
-<div class="card-title">🔗 LISTAS MAESTRAS - ELITE TV</div>
-<div style="font-weight:bold;font-size:13px;margin-top:10px">📺 1. CANALES LATINOS (3000)</div>
-<div class="m3u" id="l1">https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u</div>
-<button class="btn btn-gray" onclick="copy('l1')">Copiar Link Canales</button>
-<div style="font-weight:bold;font-size:13px;margin-top:15px">🎬 2. PELÍCULAS (30000)</div>
-<div class="m3u" id="l2">https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/peliculas.m3u</div>
-<button class="btn btn-gray" onclick="copy('l2')">Copiar Link Películas</button>
-<div style="font-weight:bold;font-size:13px;margin-top:15px">📺 3. SERIES (58000)</div>
-<div class="m3u" id="l3">https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/series.m3u</div>
-<button class="btn btn-gray" onclick="copy('l3')">Copiar Link Series</button>
-<div style="font-weight:bold;font-size:13px;margin-top:15px">🔥 4. TODO EN UNO</div>
-<div class="m3u" id="l4">https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/todo.m3u</div>
-<button class="btn btn-gray" onclick="copy('l4')">Copiar Todo</button>
+<h3>📋 Usuarios Creados</h3>
+<table id="tabla">
+<tr><th>Usuario</th><th>Tipo</th><th>Meses</th><th>Link</th></tr>
+</table>
 </div>
-<div class="card">
-<div class="card-title">📋 Sellers y Usuarios Creados</div>
-<table id="tabla"><tr><th>Usuario</th><th>Tipo</th><th>Meses</th><th>Cred</th><th>X</th></tr><tr><td>mirton</td><td>CLIENTE 1M</td><td>1M</td><td>1</td><td><button onclick="this.parentElement.parentElement.remove()" style="background:#444;color:#fff">X</button></td></tr></table>
+<div class="card" style="border-left-color:#333">
+<h3 style="color:#888">⚙️ Listas Maestras (ocultas)</h3>
+<button class="btn btn-dark" onclick="document.getElementById('listas').classList.toggle('show')" style="font-size:12px">Mostrar / Ocultar Listas</button>
+<div id="listas" class="link-box" style="background:#111">
+<b>Canales (3000):</b><br>https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u<br><br>
+<b>Peliculas (30000):</b><br>https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/peliculas.m3u<br><br>
+<b>Series (58000):</b><br>https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/series.m3u
+</div>
 </div>
 <script>
 let creditos=500000;
 function upd(){document.getElementById('creditos').innerText=creditos;}
-function copy(id){navigator.clipboard.writeText(document.getElementById(id).innerText);alert('✅ Copiado');}
 function crearSeller(){
  let u=document.getElementById('sellerUser').value.trim();
+ let p=document.getElementById('sellerPass').value;
  let c=parseInt(document.getElementById('sellerCred').value)||0;
- if(!u){alert('Escribe usuario seller');return;}
- if(c>creditos){alert('Sin créditos');return;}
+ if(!u){alert('Pon usuario');return;}
+ if(c>creditos){alert('Sin creditos');return;}
  creditos-=c;upd();
+ let link=`https://riniestra76-crypto.github.io/Master-tv/?seller=${u}&pass=${p}`;
+ let box=document.getElementById('sellerLink');box.classList.add('show');
+ box.innerHTML=`✅ Seller <b>${u}</b> creado con ${c} créditos<br>Pass: ${p}<br><br>Link Panel Seller:<br>${link}<br><br><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="background:#ff7b00;border:none;padding:8px;border-radius:5px;font-weight:bold;width:100%">COPIAR LINK SELLER</button>`;
  let tabla=document.getElementById('tabla');let row=tabla.insertRow(-1);
- row.innerHTML=`<td>${u}</td><td>SELLER</td><td>-</td><td>${c}</td><td><button onclick="this.parentElement.parentElement.remove()">X</button></td>`;
- let m=document.getElementById('msgSeller');m.style.display='block';m.innerText='✅ Seller '+u+' creado con '+c+' créditos';
+ row.innerHTML=`<td>${u} (SELLER)</td><td>SELLER</td><td>-</td><td><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="background:#333;color:#fff;border:1px solid #555;padding:4px 8px;border-radius:4px;font-size:10px">Copiar</button></td>`;
  document.getElementById('sellerUser').value='';
 }
 function crearCliente(){
  let u=document.getElementById('clientUser').value.trim();
+ let p=document.getElementById('clientPass').value;
  let meses=document.getElementById('clientMeses').value;
  let tipo=document.getElementById('clientTipo').value;
- if(!u){alert('Escribe usuario');return;}
+ if(!u){alert('Pon usuario');return;}
  let costo=parseInt(meses);if(tipo.includes('DEMO'))costo=0;
- if(costo>creditos){alert('Sin créditos');return;}
+ if(costo>creditos){alert('Sin creditos');return;}
  if(costo>0){creditos-=costo;upd();}
+ let linkCanales=`https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u?username=${u}&password=${p}`;
+ let box=document.getElementById('clientLink');box.classList.add('show');
+ box.innerHTML=`✅ Usuario <b>${u}</b> creado: ${meses} MES - ${tipo}<br>Pass: ${p} - Costo: ${costo} creditos<br><br><b>LINK PARA EL CLIENTE:</b><br>${linkCanales}<br><br><button onclick="navigator.clipboard.writeText('${linkCanales}');alert('Link copiado')" style="background:#00ff00;color:#000;border:none;padding:10px;border-radius:5px;font-weight:900;width:100%">📋 COPIAR LINK DEL CLIENTE</button>`;
  let tabla=document.getElementById('tabla');let row=tabla.insertRow(-1);
- row.innerHTML=`<td>${u}</td><td>${tipo.substring(0,10)}</td><td>${meses}M</td><td>${costo}</td><td><button onclick="this.parentElement.parentElement.remove()">X</button></td>`;
- let m=document.getElementById('msgCliente');m.style.display='block';m.innerText='✅ Usuario '+u+' creado: '+meses+' meses ('+tipo+')';
+ row.innerHTML=`<td>${u}<br><small>${p}</small></td><td>${tipo.substring(0,4)} ${meses}M</td><td>${meses}M</td><td><button onclick="navigator.clipboard.writeText('${linkCanales}');alert('Copiado')" style="background:#ff7b00;border:none;padding:4px 8px;border-radius:4px;font-size:10px;font-weight:bold">Copiar Link</button></td>`;
  document.getElementById('clientUser').value='';
 }
 function crearDemo(){
  let r=Math.floor(Math.random()*9000)+1000;
- document.getElementById('clientUser').value='demo'+r;
+ document.getElementById('clientUser').value='Tata'+r;
  document.getElementById('clientTipo').value='DEMO Gratis 24H';
  document.getElementById('clientMeses').value='1';
  crearCliente();
