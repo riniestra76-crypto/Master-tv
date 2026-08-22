@@ -3,65 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MASTER TV PREMIUM - 1M CREDITOS</title>
+<title>MASTER TV V5 - PANEL + CHECKER + M3U MANAGER</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0b0b0b;color:#fff;font-family:Arial;padding:10px}
-h1{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;padding:12px;border-radius:8px;text-align:center;margin:0 0 10px 0;font-size:20px}
-.creditos{background:#000;border:2px solid #ff7b00;color:#ff7b00;padding:10px;text-align:center;font-weight:900;border-radius:8px;font-size:20px;margin-bottom:10px}
-.card{background:#1a1a1a;border-radius:10px;padding:12px;margin:10px 0;border-left:5px solid #ff7b00;box-shadow:0 2px 8px #000}
-.card h3{margin:0 0 8px 0;color:#ff7b00}
-input,select{width:100%;padding:11px;margin:5px 0;border-radius:6px;border:1px solid #333;background:#252525;color:#fff;font-size:14px}
-.btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-top:8px;font-size:14px}
+*{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:8px}
+h1{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;padding:10px;border-radius:8px;text-align:center;font-size:16px;margin:0 0 8px 0}
+.tabs{display:flex;gap:5px;margin-bottom:10px}
+.tab{flex:1;padding:10px;text-align:center;background:#1e1e1e;border-radius:8px;cursor:pointer;font-weight:900;font-size:12px;border:1px solid #333}
+.tab.active{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;border-color:#ff7b00}
+.creditos{background:#000;border:2px solid #ff7b00;color:#ff7b00;padding:8px;text-align:center;font-weight:900;border-radius:8px;font-size:18px;margin-bottom:8px}
+.card{background:#1e1e1e;border-radius:10px;padding:10px;margin:8px 0;border-left:5px solid #ff7b00}
+.card h3{margin:0 0 6px 0;color:#ff7b00;font-size:14px}
+input,select,textarea{width:100%;padding:10px;margin:4px 0;border-radius:6px;border:1px solid #333;background:#252525;color:#fff;font-size:13px}
+textarea{height:80px}
+.btn{width:100%;padding:10px;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-top:6px;font-size:13px}
 .btn-orange{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000}
-.btn-green{background:#00c853;color:#000}
+.btn-green{background:#00ff88;color:#000}
 .btn-dark{background:#333;color:#fff;border:1px solid #555}
-.link-box{background:#000;color:#00ff88;padding:12px;border:1px solid #ff7b00;border-radius:8px;word-break:break-all;font-size:12px;margin:8px 0;display:none}
+.btn-blue{background:#008cff;color:#fff}
+.link-box{background:#000;color:#00ff88;padding:10px;border:1px solid #ff7b00;border-radius:8px;word-break:break-all;font-size:11px;margin:6px 0;display:none}
 .show{display:block !important}
-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
-th{background:#222;color:#ff7b00;padding:8px;text-align:left}
-td{padding:8px;border-bottom:1px solid #222}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+th{background:#222;color:#ff7b00;padding:6px;text-align:left}
+td{padding:6px;border-bottom:1px solid #222}
+.live{color:#00ff88;font-weight:900}
+.dead{color:#ff4444;font-weight:900}
+.section{display:none}
+.section.active{display:block}
+.log{background:#000;padding:8px;border-radius:6px;font-size:10px;height:100px;overflow:auto;border:1px solid #333;color:#aaa;margin-top:8px}
+.dropzone{border:2px dashed #ff7b00;border-radius:8px;padding:15px;text-align:center;background:#111;color:#888;font-size:12px;margin:8px 0}
+.dropzone.dragover{background:#221500;border-color:#ffaa00;color:#ff7b00}
 </style>
 </head>
 <body>
-<h1>🔥 MASTER TV PREMIUM ELITE 🔥<br><small style="font-size:12px">PANEL PROFESIONAL 1,000,000 CREDITOS</small></h1>
+<h1>🔥 MASTER TV V5 ELITE - 1M CREDITOS + CHECKER + M3U MANAGER 🔥</h1>
 <div class="creditos">💎 CREDITOS: <span id="creditos">1000000</span> 💎</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showTab('panel')">👑 PANEL</div>
+<div class="tab" onclick="showTab('listas')">📁 LISTAS M3U</div>
+<div class="tab" onclick="showTab('checker')">🔍 CHECKER</div>
+</div>
+
+<!-- PANEL TAB -->
+<div id="panel" class="section active">
 <div class="card">
 <h3>👑 CREAR SELLER</h3>
-<input id="sellerUser" placeholder="Usuario Seller">
+<input id="sellerUser" placeholder="Usuario Seller ej: vendedor1">
 <input id="sellerPass" placeholder="Contraseña" value="1234">
-<input id="sellerCred" type="number" value="100">
+<input id="sellerCred" type="number" value="100" placeholder="Creditos">
 <button class="btn btn-orange" onclick="crearSeller()">CREAR SELLER</button>
 <div id="sellerLink" class="link-box"></div>
 </div>
+
 <div class="card">
 <h3>👤 CREAR USUARIO 1 A 12 MESES</h3>
 <input id="clientUser" placeholder="Usuario cliente">
 <input id="clientPass" placeholder="Contraseña" value="1234">
 <select id="clientMeses">
-<option value="1">1 MES</option><option value="2">2 MESES</option><option value="3">3 MESES</option><option value="4">4 MESES</option><option value="5">5 MESES</option><option value="6">6 MESES</option><option value="7">7 MESES</option><option value="8">8 MESES</option><option value="9">9 MESES</option><option value="10">10 MESES</option><option value="11">11 MESES</option><option value="12">12 MESES</option>
+<option value="1">1 MES - 1 credito</option><option value="2">2 MESES</option><option value="3">3 MESES</option><option value="6">6 MESES</option><option value="12">12 MESES - MEJOR PRECIO</option>
 </select>
 <select id="clientTipo">
-<option value="PREMIUM">🔥 PREMIUM 2000 CANALES + PELICULAS + SERIES</option>
-<option value="DEMO 24H">🎁 DEMO GRATIS 24H</option>
-<option value="DEMO 48H">🎁 DEMO GRATIS 48H</option>
-<option value="LATINOS">📺 SOLO LATINOS MEXICO</option>
-<option value="PELICULAS">🎬 SOLO PELICULAS</option>
-<option value="SERIES">📚 SOLO SERIES</option>
-</select>
-<button class="btn btn-orange" onclick="crearCliente()">CREAR USUARIO PREMIUM</button>
-<button class="btn btn-green" onclick="crearDemo()">🎁 DEMO GRATIS RAPIDO</button>
-<div id="clientLink" class="link-box"></div>
-</div>
+<option value="PREMIUM">🔥 PREMIUM 2000 CANALES + PELIS + SERIES</option>
+<option value="DEMO 24H">🎁 DEMO 
+  <!-- CHECKER TAB -->
+<div id="checker" class="section">
 <div class="card">
-<h3>📋 USUARIOS CREADOS</h3>
-<table id="tabla"><tr><th>Usuario</th><th>Plan</th><th>Exp</th><th>Link</th></tr></table>
+<h3>🔍 CHECKER - TESTEAR QUE CANALES SIGUEN LIVE</h3>
+<input id="m3uUrl" placeholder="Pega URL m3u a testear" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u">
+<button class="btn btn-orange" onclick="cargarM3U()">📥 CARGAR Y TESTEAR</button>
+<input type="file" id="fileInput2" accept=".m3u,.m3u8,.txt">
+<div style="font-size:10px;color:#888">Sube archivo .m3u o usa URL</div>
 </div>
+
+<div class="card" id="stats" style="display:none">
+<div style="display:flex;gap:8px;text-align:center">
+<div style="flex:1;background:#111;padding:8px;border-radius:6px"><div id="total" style="font-size:18px;font-weight:900">0</div><div style="font-size:9px;color:#888">TOTAL</div></div>
+<div style="flex:1;background:#111;padding:8px;border-radius:6px"><div id="live" style="font-size:18px;color:#00ff88;font-weight:900">0</div><div style="font-size:9px;color:#888">LIVE ✅</div></div>
+<div style="flex:1;background:#111;padding:8px;border-radius:6px"><div id="dead" style="font-size:18px;color:#ff4444;font-weight:900">0</div><div style="font-size:9px;color:#888">DEAD ❌</div></div>
+</div>
+<div class="log" id="log"></div>
+<button class="btn btn-green" id="btnExport" style="display:none" onclick="exportarLive()">📋 COPIAR SOLO LIVE</button>
+</div>
+
+<div class="card">
+<table id="tablaChecker"><tr><th>#</th><th>Canal</th><th>Estado</th></tr></table>
+</div>
+</div>
+
 <script>
-let creditos=1000000;function upd(){document.getElementById('creditos').innerText=creditos.toLocaleString();}
-function crearSeller(){let u=document.getElementById('sellerUser').value.trim();let p=document.getElementById('sellerPass').value;let c=parseInt(document.getElementById('sellerCred').value)||0;if(!u){alert('Pon usuario');return;}if(c>creditos){alert('Sin creditos');return;}creditos-=c;upd();let link=`https://riniestra76-crypto.github.io/Master-tv/?seller=${u}`;let box=document.getElementById('sellerLink');box.classList.add('show');box.innerHTML=`✅ Seller ${u} creado ${c} cred<br>${link}<br><br><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="background:#ff7b00;border:none;padding:10px;border-radius:6px;font-weight:900;width:100%">COPIAR LINK SELLER</button>`;let tabla=document.getElementById('tabla');let row=tabla.insertRow(-1);row.innerHTML=`<td>${u}</td><td>SELLER</td><td>${c}</td><td><button onclick="navigator.clipboard.writeText('${link}')" style="background:#333;color:#fff;border:1px solid #555;padding:5px 8px;border-radius:4px;font-size:10px">Copiar</button></td>`;}
-function crearCliente(){let u=document.getElementById('clientUser').value.trim();let p=document.getElementById('clientPass').value;let meses=document.getElementById('clientMeses').value;let tipo=document.getElementById('clientTipo').value;if(!u){alert('Pon usuario');return;}let costo=parseInt(meses);if(tipo.includes('DEMO'))costo=0;if(costo>creditos){alert('Sin creditos');return;}if(costo>0){creditos-=costo;upd();}let base='https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main';let linkTodo=`${base}/todo.m3u?username=${u}&password=${p}`;let linkCanales=`${base}/latinos.m3u?username=${u}&password=${p}`;let finalLink=linkTodo;if(tipo=='LATINOS')finalLink=linkCanales;if(tipo=='PELICULAS')finalLink=`${base}/peliculas.m3u?username=${u}&password=${p}`;if(tipo=='SERIES')finalLink=`${base}/series.m3u?username=${u}&password=${p}`;let exp=new Date();exp.setMonth(exp.getMonth()+parseInt(meses));let box=document.getElementById('clientLink');box.classList.add('show');box.innerHTML=`✅ <b>${u}</b> ${tipo} ${meses}M Pass:${p} Expira:${exp.toLocaleDateString()}<br><br><b>LINK M3U8 PREMIUM:</b><br><div style="background:#111;padding:8px;border-radius:4px;color:#0f0">${finalLink}</div><br><button onclick="navigator.clipboard.writeText('${finalLink}');alert('LINK COPIADO')" style="background:#00ff88;color:#000;border:none;padding:12px;border-radius:6px;font-weight:900;width:100%">📋 COPIAR LINK M3U8 PREMIUM</button>`;let tabla=document.getElementById('tabla');let row=tabla.insertRow(-1);row.innerHTML=`<td>${u}<br><small>${p}</small></td><td>${tipo} ${meses}M</td><td>${exp.toLocaleDateString()}</td><td><button onclick="navigator.clipboard.writeText('${finalLink}');alert('Copiado')" style="background:#ff7b00;border:none;padding:6px 10px;border-radius:4px;font-size:10px;font-weight:900">COPIAR LINK</button></td>`;}
-function crearDemo(){let r=Math.floor(Math.random()*9000)+1000;document.getElementById('clientUser').value='Demo'+r;document.getElementById('clientTipo').value='DEMO 24H';document.getElementById('clientMeses').value='1';crearCliente();}
-upd();
-</script>
-</body>
-</html>
+let creditos=1000000;
+let misCanales=[];
+let canalesChecker=[];let soloLiveChecker=[];
+
+function showTab(t){
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ document.querySelectorAll('.tab').forEach(tab=>tab.classList.remove('active'));
+ document.getElementById(t).classList.add('active');
+ if(window.event) window.event.target.classList.add('active');
+}
+function upd(){document.getElementById('creditos').innerText=creditos.toLocaleString();}
+function crearSeller(){
+ let u=document.getElementById('sellerUser').value.trim();let p=document.getElementById('sellerPass').value||'1234';let c=parseInt(document.getElementById('sellerCred').value)||0;
+ if(!u){alert('Usuario');return;}if(c>creditos){alert('Sin creditos');return;}creditos-=c;upd();
+ let link=`https://riniestra76-crypto.github.io/Master-tv/?seller=${u}`;
+ let box=document.getElementById('sellerLink');box.classList.add('show');
+ box.innerHTML=`✅ Seller ${u} ${c} cred<br>${link}<br><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="background:#ff7b00;border:none;padding:8px;border-radius:6px;font-weight:900;width:100%;margin-top:5px">COPIAR</button>`;
+ let tabla=document.getElementById('tabla');let r=tabla.insertRow(-1);r.innerHTML=`<td>${u}</
