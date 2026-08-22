@@ -3,130 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MASTER TV ELITE - VENTAS + CHECKER V6</title>
+<title>MASTER TV V5 - PANEL + CHECKER + M3U MANAGER</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;padding:8px}
-h1{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;padding:10px;border-radius:8px;text-align:center;font-size:15px;margin:0 0 8px 0}
+h1{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;padding:10px;border-radius:8px;text-align:center;font-size:16px;margin:0 0 8px 0}
 .tabs{display:flex;gap:5px;margin-bottom:10px}
-.tab{flex:1;padding:12px;text-align:center;background:#1e1e1e;border-radius:8px;cursor:pointer;font-weight:900;font-size:12px;border:2px solid #333}
+.tab{flex:1;padding:10px;text-align:center;background:#1e1e1e;border-radius:8px;cursor:pointer;font-weight:900;font-size:12px;border:1px solid #333}
 .tab.active{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000;border-color:#ff7b00}
-.creditos{background:#000;border:2px solid #ff7b00;color:#00ff88;padding:10px;text-align:center;font-weight:900;border-radius:8px;font-size:18px;margin-bottom:8px}
-.card{background:#1e1e1e;border-radius:10px;padding:12px;margin:8px 0;border-left:5px solid #ff7b00}
-.card h3{margin:0 0 8px 0;color:#ff7b00;font-size:13px}
-input,select,textarea{width:100%;padding:12px;margin:4px 0;border-radius:6px;border:1px solid #333;background:#252525;color:#fff;font-size:13px}
-.btn{width:100%;padding:12px;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-top:6px;font-size:13px}
-.btn-o{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000}
-.btn-g{background:#00ff88;color:#000}
-.btn-b{background:#008cff;color:#fff}
-.link{background:#000;color:#00ff88;padding:10px;border:1px solid #ff7b00;border-radius:8px;word-break:break-all;font-size:11px;margin:6px 0;display:none}
-.show{display:block!important}
+.creditos{background:#000;border:2px solid #ff7b00;color:#ff7b00;padding:8px;text-align:center;font-weight:900;border-radius:8px;font-size:18px;margin-bottom:8px}
+.card{background:#1e1e1e;border-radius:10px;padding:10px;margin:8px 0;border-left:5px solid #ff7b00}
+.card h3{margin:0 0 6px 0;color:#ff7b00;font-size:14px}
+input,select,textarea{width:100%;padding:10px;margin:4px 0;border-radius:6px;border:1px solid #333;background:#252525;color:#fff;font-size:13px}
+textarea{height:80px}
+.btn{width:100%;padding:10px;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin-top:6px;font-size:13px}
+.btn-orange{background:linear-gradient(90deg,#ff7b00,#ffaa00);color:#000}
+.btn-green{background:#00ff88;color:#000}
+.btn-dark{background:#333;color:#fff;border:1px solid #555}
+.btn-blue{background:#008cff;color:#fff}
+.link-box{background:#000;color:#00ff88;padding:10px;border:1px solid #ff7b00;border-radius:8px;word-break:break-all;font-size:11px;margin:6px 0;display:none}
+.show{display:block !important}
 table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
 th{background:#222;color:#ff7b00;padding:6px;text-align:left}
 td{padding:6px;border-bottom:1px solid #222}
+.live{color:#00ff88;font-weight:900}
+.dead{color:#ff4444;font-weight:900}
 .section{display:none}
 .section.active{display:block}
-.log{background:#000;padding:8px;border-radius:6px;height:120px;overflow:auto;font-size:10px;border:1px solid #333;color:#aaa;margin-top:8px}
-.b{padding:4px 6px;border-radius:4px;font-size:10px;font-weight:900}
-.b-ok{background:#00ff88;color:#000}
-.b-bad{background:#ff4444;color:#fff}
-.b-test{background:#ffaa00;color:#000}
-.drop{border:2px dashed #ff7b00;border-radius:8px;padding:15px;text-align:center;background:#111;color:#888;font-size:12px}
+.log{background:#000;padding:8px;border-radius:6px;font-size:10px;height:100px;overflow:auto;border:1px solid #333;color:#aaa;margin-top:8px}
+.dropzone{border:2px dashed #ff7b00;border-radius:8px;padding:15px;text-align:center;background:#111;color:#888;font-size:12px;margin:8px 0}
+.dropzone.dragover{background:#221500;border-color:#ffaa00;color:#ff7b00}
 </style>
 </head>
 <body>
-<h1>🔥 MASTER TV ELITE - 1M CREDITOS + CHECKER V6 🔥</h1>
-<div class="creditos">💎 CREDITOS: <span id="cred">1000000</span> 💎</div>
+<h1>🔥 MASTER TV V5 ELITE - 1M CREDITOS + CHECKER + M3U MANAGER 🔥</h1>
+<div class="creditos">💎 CREDITOS: <span id="creditos">1000000</span> 💎</div>
+
 <div class="tabs">
-<div class="tab active" onclick="showTab('ventas')">👑 VENTAS</div>
-<div class="tab" onclick="showTab('listas')">📁 LISTAS</div>
+<div class="tab active" onclick="showTab('panel')">👑 PANEL</div>
+<div class="tab" onclick="showTab('listas')">📁 LISTAS M3U</div>
 <div class="tab" onclick="showTab('checker')">🔍 CHECKER</div>
 </div>
 
-<div id="ventas" class="section active">
+<!-- PANEL TAB -->
+<div id="panel" class="section active">
 <div class="card">
 <h3>👑 CREAR SELLER</h3>
-<input id="sUser" placeholder="vendedor1">
-<input id="sPass" placeholder="pass" value="1234">
-<input id="sCred" type="number" value="100">
-<button class="btn btn-o" onclick="crearSeller()">CREAR SELLER</button>
-<div id="sLink" class="link"></div>
+<input id="sellerUser" placeholder="Usuario Seller ej: vendedor1">
+<input id="sellerPass" placeholder="Contraseña" value="1234">
+<input id="sellerCred" type="number" value="100" placeholder="Creditos">
+<button class="btn btn-orange" onclick="crearSeller()">CREAR SELLER</button>
+<div id="sellerLink" class="link-box"></div>
 </div>
+
 <div class="card">
-<h3>👤 CREAR CLIENTE 1 A 12 MESES + DEMO</h3>
-<input id="cUser" placeholder="cliente">
-<input id="cPass" value="1234">
-<select id="cMeses"><option value="1">1 MES - 1 cred</option><option value="3">3 MESES</option><option value="6">6 MESES</option><option value="12">12 MESES</option></select>
-<select id="cTipo">
-<option value="PREMIUM">🔥 PREMIUM 2000 CANALES</option>
-<option value="LATINOS">📺 LATINOS MX 100% LIVE</option>
-<option value="PELICULAS">🎬 PELICULAS</option>
-<option value="SERIES">📚 SERIES</option>
+<h3>👤 CREAR USUARIO 1 A 12 MESES</h3>
+<input id="clientUser" placeholder="Usuario cliente">
+<input id="clientPass" placeholder="Contraseña" value="1234">
+<select id="clientMeses">
+<option value="1">1 MES - 1 credito</option><option value="2">2 MESES</option><option value="3">3 MESES</option><option value="6">6 MESES</option><option value="12">12 MESES - MEJOR PRECIO</option>
+</select>
+<select id="clientTipo">
+<option value="PREMIUM">🔥 PREMIUM 2000 CANALES + PELIS + SERIES</option>
 <option value="DEMO 24H">🎁 DEMO 24H GRATIS</option>
 <option value="DEMO 48H">🎁 DEMO 48H GRATIS</option>
-<option value="CUSTOM">📁 PERSONALIZADA (de LISTAS)</option>
+<option value="LATINOS">📺 SOLO LATINOS MX (150 canales - 100% LIVE)</option>
+<option value="PELICULAS">🎬 SOLO PELICULAS</option>
+<option value="SERIES">📚 SOLO SERIES</option>
+<option value="CUSTOM">📁 LISTA PERSONALIZADA (de pestaña LISTAS M3U)</option>
 </select>
-<button class="btn btn-o" onclick="crearCliente()">💎 CREAR USUARIO</button>
-<button class="btn btn-g" onclick="crearDemo()">🎁 DEMO RAPIDO</button>
-<div id="cLink" class="link"></div>
-</div>
-<div class="card"><h3>📋 USUARIOS</h3><table id="tUsers"><tr><th>User</th><th>Plan</th><th>Exp</th><th>Link</th></tr></table></div>
+<button class="btn btn-orange" onclick="crearCliente()">💎 CREAR USUARIO PREMIUM</button>
+<button class="btn btn-green" onclick="crearDemo()">🎁 DEMO RAPIDO</button>
+<div id="clientLink" class="link-box"></div>
 </div>
 
+<div class="card">
+<h3>📋 USUARIOS CREADOS</h3>
+<table id="tabla"><tr><th>Usuario</th><th>Plan</th><th>Exp</th><th>Link</th></tr></table>
+</div>
+</div>
+
+<!-- LISTAS TAB -->
 <div id="listas" class="section">
 <div class="card" style="border-left-color:#00ff88">
-<h3 style="color:#00ff88">📁 AGREGAR ARCHIVOS M3U</h3>
-<div class="drop" onclick="document.getElementById('fList').click()">📂 Click para agregar .m3u / .m3u8<br><small>latinos.m3u, peliculas.m3u, todo.m3u, MEGA M3U-Combo.txt</small></div>
-<input type="file" id="fList" multiple accept=".m3u,.m3u8,.txt" style="display:none">
-<input id="urlList" placeholder="URL de lista m3u externa">
-<button class="btn btn-b" onclick="addUrl()">➕ AGREGAR URL</button>
-<textarea id="txtMan" placeholder="#EXTM3U... pega contenido m3u"></textarea>
-<button class="btn btn-o" onclick="addManual()">➕ AGREGAR MANUAL</button>
-<div style="background:#111;padding:8px;border-radius:6px;margin-top:8px;font-size:10px;color:#aaa">
-LISTAS BASE 100% LIVE:<br>
-✅ https://i.mjh.nz/SamsungTVPlus/es.m3u8<br>
-✅ https://i.mjh.nz/PlutoTV/es.m3u8<br>
-✅ https://i.mjh.nz/Plex/es.m3u8
+<h3 style="color:#00ff88">📁 GESTOR DE LISTAS M3U - AGREGAR ARCHIVOS</h3>
+<div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+📂 Click aquí o arrastra tu archivo .m3u / .m3u8<br><small>Soporta: latinos.m3u, peliculas.m3u, series.m3u, todo.m3u</small>
+</div>
+<input type="file" id="fileInput" accept=".m3u,.m3u8,.txt" multiple style="display:none">
+<input id="customUrl" placeholder="O pega URL de lista m3u externa ej: https://ejemplo.com/lista.m3u">
+<button class="btn btn-blue" onclick="agregarUrl()">➕ AGREGAR URL A MIS LISTAS</button>
+<textarea id="manualM3U" placeholder="O pega aquí contenido m3u manualmente..."></textarea>
+<button class="btn btn-orange" onclick="agregarManual()">➕ AGREGAR CONTENIDO MANUAL</button>
+<div id="misListas" style="margin-top:10px"></div>
+<div style="background:#111;padding:8px;border-radius:6px;margin-top:10px">
+<div style="font-size:11px;color:#ff7b00;font-weight:900">LISTAS BASE 100% LIVE:</div>
+<div style="font-size:10px;color:#aaa;margin-top:4px">
+✅ Samsung 150 canales: https://i.mjh.nz/SamsungTVPlus/es.m3u8<br>
+✅ Pluto 100 canales: https://i.mjh.nz/PlutoTV/es.m3u8<br>
+✅ Plex 100 canales: https://i.mjh.nz/Plex/es.m3u8
+</div>
+<button class="btn btn-dark" onclick="usarListasBase()" style="font-size:11px">⚡ USAR LISTAS BASE 100% LIVE</button>
 </div>
 </div>
 <div class="card">
-<h3>📦 MIS LISTAS: <span id="cntL">0</span> listas / <span id="cntC">0</span> canales</h3>
-<table id="tList"><tr><th>Origen</th><th>#</th><th>X</th></tr></table>
-<button class="btn btn-g" id="btnGen" style="display:none" onclick="genFinal()">🚀 GENERAR LISTA FINAL LIMPIA</button>
-<div id="finalBox" class="link"></div>
+<h3>📦 MIS LISTAS CARGADAS (<span id="countListas">0</span>) - Total canales: <span id="countCanales">0</span></h3>
+<table id="tablaListas"><tr><th>Nombre</th><th>Canales</th><th>Accion</th></tr></table>
+<button class="btn btn-green" onclick="generarM3UFinal()" style="display:none" id="btnGenerar">🚀 GENERAR LISTA FINAL LIMPIA Y COPIAR</button>
+<div id="finalM3U" class="link-box" style="max-height:200px;overflow:auto"></div>
+</div>
+</div>
+<!-- CHECKER TAB -->
+<div id="checker" class="section">
+<div class="card">
+<h3>🔍 CHECKER - TESTEAR QUE CANALES SIGUEN LIVE</h3>
+<input id="m3uUrl" placeholder="Pega URL m3u a testear" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u">
+<button class="btn btn-orange" onclick="cargarM3U()">📥 CARGAR Y TESTEAR</button>
+<input type="file" id="fileInput2" accept=".m3u,.m3u8,.txt">
+<div style="font-size:10px;color:#888">Sube archivo.m3u o usa URL</div>
+</div>
+
+<div class="card" id="stats" style="display:none">
+<div style="display:flex;gap:8px;text-align:center">
+<div style="flex:1;background:#111;padding:8px;border-radius:6px"><div id="total" style="font-size:18px;font-weight:900">0</div><div style="font-size:9px;color:#888">TOTAL</div></div>
+<div style="flex:1;background:#111;padding:8px;border-radius:6px"><div id="live" style="font-size:18px;color:#00ff88;font-weight:900">0</div><div style="font-size:9px;color:#888">LIVE ✅</div></div>
+<div style="flex:1;background:#111;padding:8px;border-radius:6px"><div id="dead" style="font-size:18px;color:#ff4444;font-weight:900">0</div><div style="font-size:9px;color:#888">DEAD ❌</div></div>
+</div>
+<div class="log" id="log"></div>
+<button class="btn btn-green" id="btnExport" style="display:none" onclick="exportarLive()">📋 COPIAR SOLO LIVE</button>
+</div>
+
+<div class="card">
+<table id="tablaChecker"><tr><th>#</th><th>Canal</th><th>Estado</th></tr></table>
 </div>
 </div>
 
-<div id="checker" class="section">
-<div class="card" style="border-left-color:#00ff88">
-<h3 style="color:#00ff88">🔍 CHECKER V6 - TEST REAL (el de tu foto)</h3>
-<input id="chkUrl" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u">
-<button class="btn btn-o" onclick="chkCargarUrl()">📥 CARGAR Y ANALIZAR LISTA</button>
-<input type="file" id="chkFile" accept=".m3u,.m3u8,.txt">
-<div style="font-size:10px;color:#888">Este es el que ya te funcionó con 11 canales</div>
-</div>
-<div class="card" id="chkStats" style="display:none">
-<div style="display:flex;gap:8px;text-align:center">
-<div style="flex:1;background:#111;padding:10px;border-radius:8px"><div id="chkT" style="font-size:20px;font-weight:900">0</div><div style="font-size:9px;color:#888">TOTAL</div></div>
-<div style="flex:1;background:#111;padding:10px;border-radius:8px"><div id="chkL" style="font-size:20px;color:#00ff88;font-weight:900">0</div><div style="font-size:9px;color:#888">LIVE</div></div>
-<div style="flex:1;background:#111;padding:10px;border-radius:8px"><div id="chkD" style="font-size:20px;color:#ff4444;font-weight:900">0</div><div style="font-size:9px;color:#888">DEAD</div></div>
-</div>
-<div class="log" id="chkLog"></div>
-<button class="btn btn-g" id="chkCopy" style="display:none" onclick="chkCopiarLive()">📋 COPIAR SOLO CANALES LIVE</button>
-</div>
-<div class="card"><table id="chkTabla"><tr><th>#</th><th>Canal</th><th>Estado</th></tr></table></div>
-</div>
 <script>
-let creditos=1000000;let misCanales=[];let chkCanales=[];let chkLive=[];
-function showTab(t){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(t).classList.add('active');let tabs=document.querySelectorAll('.tab');if(t=='ventas')tabs[0].classList.add('active');if(t=='listas')tabs[1].classList.add('active');if(t=='checker')tabs[2].classList.add('active');}
-function upd(){document.getElementById('cred').innerText=creditos.toLocaleString();}
-function crearSeller(){let u=document.getElementById('sUser').value.trim();let p=document.getElementById('sPass').value||'1234';let c=parseInt(document.getElementById('sCred').value)||0;if(!u){alert('usuario');return;}if(c>creditos){alert('sin creditos');return;}creditos-=c;upd();let link=`https://riniestra76-crypto.github.io/Master-tv/?seller=${u}`;let b=document.getElementById('sLink');b.classList.add('show');b.innerHTML=`Seller ${u} ${c} cred<br>${link}<br><button onclick="navigator.clipboard.writeText('${link}')" style="background:#ff7b00;border:none;padding:8px;border-radius:6px;width:100%;font-weight:900;margin-top:5px">COPIAR</button>`;let tb=document.getElementById('tUsers');let r=tb.insertRow(-1);r.innerHTML=`<td>${u}</td><td>SELLER</td><td>${c}</td><td><button onclick="navigator.clipboard.writeText('${link}')" style="background:#333;color:#fff;border:none;padding:4px 8px;border-radius:4px">Copiar</button></td>`;}
-function crearCliente(){let u=document.getElementById('cUser').value.trim();let p=document.getElementById('cPass').value||'1234';let meses=document.getElementById('cMeses').value;let tipo=document.getElementById('cTipo').value;if(!u){alert('usuario');return;}let costo=tipo.includes('DEMO')?0:parseInt(meses);if(costo>creditos){alert('sin creditos');return;}if(costo>0){creditos-=costo;upd();}let base='https://i.mjh.nz';let finalLink=`${base}/SamsungTVPlus/es.m3u8`;if(tipo=='PELICULAS')finalLink=`${base}/Plex/es.m3u8`;if(tipo=='SERIES')finalLink=`${base}/PlutoTV/es.m3u8`;if(tipo=='PREMIUM')finalLink=`${base}/SamsungTVPlus/es.m3u8`;let exp=new Date();exp.setMonth(exp.getMonth()+parseInt(meses));let b=document.getElementById('cLink');b.classList.add('show');if(tipo!='CUSTOM'){b.innerHTML=`${u} ${tipo} ${meses}M<br><div style="background:#111;padding:6px;border-radius:4px;color:#0f0;font-size:10px">${finalLink}?username=${u}&password=${p}</div><button onclick="navigator.clipboard.writeText('${finalLink}')" style="background:#00ff88;color:#000;border:none;padding:10px;border-radius:6px;font-weight:900;width:100%;margin-top:6px">📋 COPIAR LINK 100% LIVE</button>`;}else{if(misCanales.length==0){alert('Agrega listas en pestaña LISTAS');return;}b.innerHTML=`${u} CUSTOM<br>Ve a LISTAS -> GENERAR LISTA FINAL`; }let tb=document.getElementById('tUsers');let r=tb.insertRow(-1);r.innerHTML=`<td>${u}</td><td>${tipo} ${meses}M</td><td>${exp.toLocaleDateString()}</td><td><button onclick="navigator.clipboard.writeText('${finalLink}')" style="background:#ff7b00;border:none;padding:5px 8px;border-radius:4px;font-weight:900">COPY</button></td>`;}
-function crearDemo(){let r=Math.floor(Math.random()*9000)+1000;document.getElementById('cUser').value='Demo'+r;document.getElementById('cTipo').value='DEMO 24H';document.getElementById('cMeses').value='1';crearCliente();}
-function parseM3U(text){let lines=text.split(/\r?\n/);let cur='';let res=[];lines.forEach(l=>{l=l.trim();if(l.startsWith('#EXTINF')){let p=l.split(',');cur=p[p.length-1]||'Canal';}else if(l.startsWith('http')){res.push({name:cur,url:l});cur='';}});return res;}
-function addCanales(nuevos,origen){nuevos.forEach(c=>misCanales.push({...c,origen}));updList();}
-function updList(){document.getElementById('cntL').innerText=new Set(misCanales.map(c=>c.origen)).size;document.getElementById('cntC').innerText=misCanales.length;let tb=document.getElementById('tList');tb.innerHTML='<tr><th>Origen</th><th>#</th><th>X</th></tr>';let g={};misCanales.forEach(c=>{if(!g[c.origen])g[c.origen]=0;g[c.origen]++;});Object.keys(g).forEach(k=>{let tr=document.createElement('tr');tr.innerHTML=`<td>${k.substring(0,20)}</td><td>${g[k]}</td><td><button onclick="delOri('${k.replace(/'/g,'')}')" style="background:#f44;color:#fff;border:none;padding:4px 8px;border-radius:4px">X</button></td>`;tb.appendChild(tr);});if(misCanales.length>0)document.getElementById('btnGen').style.display='block';}
-function delOri(o){misCanales=misCanales.filter(c=>c.origen!=o);updList();}
-document.getElementById('fList').addEventListener('change',e=>{Array.from(e.target.files).forEach(file=>{let rd=new FileReader();rd.onload=ev=>addCanales(parseM3U(ev.target.result),file.name);rd.readAsText(file);});});
-function addUrl(){let url=document.getElementById('urlList').value.trim();if(!url)return;fetch(url).then(r=>r.text()).then(t=>{addCanales(parseM3U(t),url);alert('Agregado');}).catch(()=>{fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(url)).then(r=>r.text()).then(t=>{addCanales(parseM3U(t),url);});});}
-function addManual(){let txt=document.getElementById('txtMan').value.trim();if(!txt)return;addCanales(parseM3U(txt),'Manual');document.getElementById('txtMan').value='';}
-function genFinal(){if(misCanales.length==0)return;let m3u='#EXTM3U\n';misCanales.forEach(c=>{m3u+=`#EXTINF:-1,${c.name}\n${c.url}\n\n`;});let b=document.getElementById('finalBox');b.classList.add('show');b.innerHTML=`${misCanales.length} canales<br><pre style="white-space:pre-wrap;font-size:10px;color:#0f0">${m3u.substring(0,1500)}...</pre><button onclick="navigator.clipboard.writeText(\`${m3u.replace(/`/g,'\\`')}\`);alert('Copiado')" style="background:#00ff88;color:#000;border:none;padding:10px;border-radius:6px;font-weight:900;width:100%">COPIAR FINAL</button
+let creditos=1000000;
+let misCanales=[];
+let canalesChecker=[];let soloLiveChecker=[];
+
+function showTab(t){
+ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+ document.querySelectorAll('.tab').forEach(tab=>tab.classList.remove('active'));
+ document.getElementById(t).classList.add('active');
+ if(window.event) window.event.target.classList.add('active');
+}
+function upd(){document.getElementById('creditos').innerText=creditos.toLocaleString();}
+function crearSeller(){
+ let u=document.getElementById('sellerUser').value.trim();let p=document.getElementById('sellerPass').value||'1234';let c=parseInt(document.getElementById('sellerCred').value)||0;
+ if(!u){alert('Usuario');return;}if(c>creditos){alert('Sin creditos');return;}creditos-=c;upd();
+ let link=`https://riniestra76-crypto.github.io/Master-tv/?seller=${u}`;
+ let box=document.getElementById('sellerLink');box.classList.add('show');
+ box.innerHTML=`✅ Seller ${u} ${c} cred<br>${link}<br><button onclick="navigator.clipboard.writeText('${link}');alert('Copiado')" style="background:#ff7b00;border:none;padding:8px;border-radius:6px;font-weight:900;width:100%;margin-top:5px">COPIAR</button>`;
+ let tabla=document.getElementById('tabla');let r=tabla.insertRow(-1);r.innerHTML=`<td>${u}</td><td>SELLER</td><td>${c}</td><td><button onclick="navigator.clipboard.writeText('${link}')" style="background:#333;color:#fff;border:1px solid #555;padding:4px 6px;border-radius:4px;font-size:10px">Copiar</button></td>`;
+}
+function crearCliente(){
+ let u=document.getElementById('clientUser').value.trim();let p=document.getElementById('clientPass').value||'1234';let meses=document.getElementById('clientMeses').value;let tipo=document.getElementById('clientTipo').value;
+ if(!u){alert('Usuario');return;}let costo=parseInt(meses);if(tipo.includes('DEMO'))costo=0;if(costo>creditos){alert('Sin creditos');return;}if(costo>0){creditos-=costo;upd();}
+ let base='https://i.mjh.nz';
+ let finalLink=`${base}/SamsungTVPlus/es.m3u8`;
+ if(tipo=='LATINOS')finalLink=`${base}/SamsungTVPlus/es.m3u8`;
+ if(tipo=='PELICULAS')finalLink=`${base}/Plex/es.m3u8`;
+ if(tipo=='SERIES')finalLink=`${base}/PlutoTV/es.m3u8`;
+ if(tipo=='PREMIUM')finalLink=`${base}/SamsungTVPlus/es.m3u8`;
+ if(tipo=='CUSTOM'){
+   if(misCanales.length==0){alert('Primero agrega listas en pestaña LISTAS M3U');return;}
+   finalLink='LISTA PERSONALIZADA';
+ }
+ let exp=new Date();exp.setMonth(exp.getMonth()+parseInt(meses));
+ let box=document.getElementById('clientLink');box.classList.add('show');
+ if(tipo!='CUSTOM'){
+  box.innerHTML=`✅ ${u} ${tipo} ${meses}M Pass:${p} Exp:${exp.toLocaleDateString()}<br><br><b>LINK 100% LIVE:</b><br><div style="background:#111;padding:6px;border-radius:4px;color:#0f0;font-size:10px">${finalLink}?username=${u}&password=${p}</div><br><button onclick="navigator.clipboard.writeText('${finalLink}');alert('COPIADO - 100% LIVE')" style="background:#00ff88;color:#000;border:none;padding:10px;border-radius:6px;font-weight:900;width:100%">📋 COPIAR LINK LIVE</button><br><br><small style="color:#aaa">Este link es de i.mjh.nz - no da error HttpDataSourceException</small>`;
+ }else{
+  box.innerHTML=`✅ ${u} ${tipo}<br>Ve a LISTAS M3U -> GENERAR LISTA FINAL y copia`;
+ }
+ let tabla=document.getElementById('tabla');let r=tabla.insertRow(-1);r.innerHTML=`<td>${u}<br><small>${p}</small></td><td>${tipo} ${meses}M</td><td>${exp.toLocaleDateString()}</td><td><button onclick="navigator.clipboard.writeText('${finalLink}')" style="background:#ff7b00;border:none;padding:5px 8px;border-radius:4px;font-size:10px;font-weight:900">COPIAR</button></td>`;
+}
+function crearDemo(){let r=Math.floor(Math.random()*9000)+1000;document.getElementById('clientUser').value='Demo'+r;document.getElementById('clientTipo').value='DEMO 24H';document.getElementById('clientMeses').value='1';crearCliente();}
+
+function parseM3UToCanales(text){
+ let lines=text.split('\n');let cur='';let res=[];
+ lines.forEach(l=>{
+  l=l.trim();if(l.startsWith('#EXTINF')){let p=l.split(',');cur=p[p.length-1]||'Sin nombre';}else if(l.startsWith('http')){res.push({name:cur||'Canal',url:l});cur='';}
+ });
+ return res;
+}
+function agregarCanales(nuevos, origen){
+ nuevos.forEach(c=>{misCanales.push({...c,origen});});
+ actualizarListasUI();
+}
+function actualizarListasUI(){
+ document.getElementById('countListas').innerText=new Set(misCanales.map(c=>c.origen)).size;
+ document.getElementById('countCanales').innerText=misCanales.length;
+ let tabla=document.getElementById('tablaListas');tabla.innerHTML='<tr><th>Nombre</th><th>Canales</th><th>Accion</th></tr>';
+ let grupos={};misCanales.forEach(c=>{if(!grupos[c.origen])grupos[c.origen]=0;grupos[c.origen]++;});
+ Object.keys(grupos).forEach(k=>{
+  let tr=document.createElement('tr');tr.innerHTML=`<td>${k.substring(0,25)}</td><td>${grupos[k]}</td><td><button onclick="eliminarOrigen('${k.replace(/'/g,'')}')" style="background:#ff4444;color:#fff;border:none;padding:4px 8px;border-radius:4px;font-size:10px">X</button></td>`;tabla.appendChild(tr);
+ });
+ if(misCanales.length>0)document.getElementById('btnGenerar').style.display='block';
+}
+function eliminarOrigen(o){misCanales=misCanales.filter(c=>c.origen!=o);actualizarListasUI();}
+document.getElementById('fileInput').addEventListener('change',e=>{
+ Array.from(e.target.files).forEach(file=>{
+  let reader=new FileReader();reader.onload=ev=>{let chans=parseM3UToCanales(ev.target.result);agregarCanales(chans,file.name);};reader.readAsText(file);
+ });
+});
+document.getElementById('fileInput2').addEventListener('change',e=>{
+ let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=ev=>parseChecker(ev.target.result);r.readAsText(f);
+});
+function agregarUrl(){
+ let url=document.getElementById('customUrl').value.trim();if(!url){alert('URL');return;}
+ fetch(url).then(r=>r.text()).then(t=>{let chans=parseM3UToCanales(t);agregarCanales(chans,url);alert(`${chans.length} canales agregados`);}).catch(()=>{
+  fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(url)).then(r=>r.text()).then(t=>{let chans=parseM3UToCanales(t);agregarCanales(chans,url);alert(`${chans.length} agregados`);}).catch(()=>alert('No se pudo - descarga.m3u y subelo'));
+ });
+}
+function agregarManual(){
+ let txt=document.getElementById('manualM3U').value.trim();if(!txt){alert('Pega contenido');return;}let chans=parseM3UToCanales(txt);agregarCanales(chans,'Manual '+new Date().toLocaleTimeString());document.getElementById('manualM3U').value='';
+}
+function usarListasBase(){
+ alert('Listas base 100% LIVE: Usa directamente https://i.mjh.nz/SamsungTVPlus/es.m3u8 en TiviMate - no necesitas generar nada, esas son las que NO dan error');
+}
+function generarM3UFinal(){
+ if(misCanales.length==0){alert('No hay canales');return;}
+ let m3u='#EXTM3U\n';m3u+=`# MASTER TV V5 - ${new Date().toLocaleString()} - ${misCanales.length} canales\n\n`;
+ misCanales.forEach(c=>{m3u+=`#EXTINF:-1,${c.name}\n${c.url}\n\n`;});
+ let box=document.getElementById('finalM3U');box.classList.add('show');
+ box.innerHTML=`<b>LISTA FINAL ${misCanales.length} CANALES:</b><br><pre style="white-space:pre-wrap;font-size:10px;color:#0f0">${m3u.substring(0,2000)}...</pre><button onclick="navigator.clipboard.writeText(\`${m3u.replace(/`/g,'\\`')}\`);alert('Copiado!')" style="background:#00ff88;color:#000;border:none;padding:10px;border-radius:6px;font-weight:900;width:100%">📋 COPIAR LISTA FINAL COMPLETA</button>`;
+}
+
+function log(m){let l=document.getElementById('log');l.innerHTML+=m+"<br>";l.scrollTop=l.scrollHeight;}
+async function cargarM3U(){
+ let url=document.getElementById('m3uUrl').value.trim();if(!url){alert('URL');return;}log('Cargando: '+url);
+ try{let r=await fetch(url);let t=await r.text();parseChecker(t);}catch(e){
+  try{let p='https://api.allorigins.win/raw?url='+encodeURIComponent(url);let r=await fetch(p);let t=await r.text();parseChecker(t);}catch(e2){log('Error: '+e2);}
+ }
+}
+function parseChecker(text){
+ canalesChecker=[];soloLiveChecker=[];document.getElementById('tablaChecker').innerHTML='<tr><th>#</th><th>Canal</th><th>Estado</th></tr>';
+ let lines=text.split('\n');let cur='';let c=0;
+ lines.forEach(l=>{
+  l=l.trim();if(l.startsWith('#EXTINF')){let p=l.split(',');cur=p[p.length-1]||'Sin nombre';}else if(l.startsWith('http')){c++;canalesChecker.push({id:c,name:cur,url:l,status:'testing'});cur='';}
+ });
+ document.getElementById('stats').style.display='block';document.getElementById('total').innerText=canalesChecker.length;log(`${canalesChecker.length} canales`);renderChecker();testCanalesChecker();
+}
+function renderChecker(){
+ let t=document.getElementById('tablaChecker');t.innerHTML='<tr><th>#</th><th>Canal</th><th>Estado</th></tr>';
+ canalesChecker.forEach(c=>{
+  let tr=document.createElement('tr');tr.innerHTML=`<td>${c.id}</td><td>${c.name.substring(0,30)}</td><td id="st-${c.id}">TESTING...</td>`;t.appendChild(tr);
+ });
+}
+async function testCanal(c){
+ try{let ctrl=new AbortController();setTimeout(()=>ctrl.abort(),8000);let u='https://api.allorigins.win/raw?url='+encodeURIComponent(c.url);let r=await fetch(u,{signal:ctrl.signal});let txt=await r.text();if(txt.includes('#EXTM3U')||txt.includes('#EXT-X')||txt.length>100)return 'live';else return 'dead';}catch(e){return 'dead';}
+}
+async function testCanalesChecker(){
+ let live=0,dead=0;soloLiveChecker=[];
+ for(let i=0;i<canalesChecker.length;i++){
+  let c=canalesChecker[i];log(`Testeando ${c.id}/${canalesChecker.length}: ${c.name}...`);
+  let s=await testCanal(c);c.status=s;let el=document.getElementById('st-'+c.id);
+  if(s=='live'){live++;soloLiveChecker.push(c);if(el)el.innerHTML='<span class="live">LIVE ✅</span>';log(`✅ LIVE: ${c.name}`);}else{dead++;if(el)el.innerHTML='<span class="dead">DEAD ❌</span>';log(`❌ DEAD: ${c.name}`);}
+  document.getElementById('live').innerText=live;document.getElementById('dead').innerText=dead;await new Promise(r=>setTimeout(r,300));
+ }
+ log(`FINAL ${live} LIVE / ${dead} DEAD`);if(soloLiveChecker.length>0)document.getElementById('btnExport').style.display='block';
+}
+function exportarLive(){
+ if(soloLiveChecker.length==0)return;let m3u='#EXTM3U\n';soloLiveChecker.forEach(c=>{m3u+=`#EXTINF:-1,${c.name}\n${c.url}\n\n`;});navigator.clipboard.writeText(m3u);alert(`${soloLiveChecker.length} LIVE copiados`);
+}
+upd();
+let dz=document.getElementById('dropzone');
+if(dz){
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('dragover');});
+dz.addEventListener('dragleave',()=>dz.classList.remove('dragover'));
+dz.addEventListener('drop',e=>{
+ e.preventDefault();dz.classList.remove('dragover');
+ Array.from(e.dataTransfer.files).forEach(file=>{
+  let reader=new FileReader();reader.onload=ev=>{let chans=parseM3UToCanales(ev.target.result);agregarCanales(chans,file.name);};reader.readAsText(file);
+ });
+});
+}
+</script>
+</body>
+</html>
