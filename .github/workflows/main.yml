@@ -1,0 +1,14 @@
+name: Actualizar Listas
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          curl https://iptv-org.github.io/iptv/languages/spa.m3u -o latinos.m3u
+          curl https://iptv-org.github.io/iptv/categories/movies.m3u -o pelis.m3u
+          curl https://iptv-org.github.io/iptv/categories/series.m3u -o series.m3u
+      - uses: stefanzweifel/git-auto-commit-action@v4
