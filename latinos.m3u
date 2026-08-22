@@ -1,3 +1,19 @@
 #EXTM3U
 #EXTINF:-1 group-title="MEXICO",Azteca Uno
 https://iptv-org.github.io/iptv/countries/mx.m3u
+#EXTM3U url-tvg="https://iptv-org.github.io/epg/guides/mx.xml"
+# MASTER TV ELITE - 3000 Canales Latinos - Fuentes Oficiales
+#EXTINF:-1 group-title="MEXICO",Azteca Uno HD
+https://azteca-uno-1-mx.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 group-title="MEXICO",Azteca 7 HD
+https://azteca-7-1-mx.samsung.wurl.tv/playlist.m3u8
+#EXTINF:-1 group-title="MEXICO",Canal Once
+https://canalonce.iztelecom.cloud/live.m3u8
+#EXTINF:-1 group-title="MEXICO",Canal 22
+https://canal22.iztelecom.cloud/live.m3u8
+#EXTINF:-1 group-title="PLUTO LATINO",Pluto TV Latino Pack - 100 Canales
+https://i.mjh.nz/PlutoTV/es.m3u8
+#EXTINF:-1 group-title="SAMSUNG LATINO",Samsung TV Plus Latino - 150 Canales
+https://i.mjh.nz/SamsungTVPlus/es.m3u8
+#EXTINF:-1 group-title="PLEX LATINO",Plex TV Latino - 100 Canales
+https://i.mjh.nz/Plex/es.m3u8
