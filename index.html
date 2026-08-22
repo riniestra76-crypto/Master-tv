@@ -1,33 +1,58 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>MASTER TV Bud Edition</title>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASTER TV - Bud Edition 30K</title>
 <style>
-body{background:#111;color:#fff;font-family:Arial;padding:15px}
-h1{color:#ff7b00;border-bottom:3px solid #ff7b00}
-.card{background:#1e1e1e;border-left:4px solid #ff7b00;padding:15px;margin:15px 0;border-radius:8px}
-input{padding:8px;border-radius:5px;border:none;margin:5px}
-button{background:#ff7b00;color:#fff;border:none;padding:10px 15px;border-radius:5px;font-weight:bold;margin:5px}
-.m3u-box{background:#000;padding:10px;border-radius:5px;border:1px solid #333;color:#0f0;width:95%}
-a{color:#ff7b00;word-break:break-all}
-</style>
-</head>
-<body>
-<h1>📺 MASTER TV Bud Edition</h1>
-<div class="card">
-<h3>🔗 Tu Lista Maestra BUD TV - 2259 Canales</h3>
-<input id="link" class="m3u-box" value="https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u">
-<br><br>
-<button onclick="navigator.clipboard.writeText(document.getElementById('link').value);alert('Copiado!')">Copiar Link M3U</button>
-<button onclick="window.open(document.getElementById('link').value)">Probar Lista</button>
-<p>Panel: https://riniestra76-crypto.github.io/Master-tv/</p>
+body{background:#0f0f0f;color:#fff;font-family:Arial;margin:0}
+.header{background:#000;padding:15px;border-bottom:3px solid #ff6a00;display:flex;justify-content:space-between}
+.logo{color:#ff6a00;font-weight:bold;font-size:24px}
+.card{background:#1c1c1c;margin:15px;padding:15px;border-radius:10px;border-left:4px solid #ff6a00}
+.credito{font-size:32px;color:#ff6a00;font-weight:bold}
+button{background:#ff6a00;color:#fff;border:0;padding:10px 15px;border-radius:5px;cursor:pointer;font-weight:bold}
+input{padding:8px;border-radius:5px;border:0;margin:5px}
+table{width:100%;color:#fff} td,th{padding:8px;text-align:left}
+</style></head><body>
+<div class="header"><div class="logo">📺 MASTER TV <small style="color:#fff">Bud Edition</small></div><div>CREDITOS: <span id="total" class="credito">30000</span></div></div>
+
+<div class="card"><h3>➕ Crear Seller (Revendedor)</h3>
+Usuario: <input id="sellerUser" placeholder="juan_seller">
+Pass: <input id="sellerPass" placeholder="1234">
+Créditos: <input id="sellerCred" type="number" value="100">
+<button onclick="crearSeller()">Crear Seller (-créditos)</button>
+<p>Seller puede crear sus propios clientes usando sus créditos.</p>
 </div>
-<div class="card">
-<h3>✅ Links para TiviMate</h3>
-<p><b>LATINOS:</b><br>https://raw.githubusercontent.com/riniestra76-crypto/Master-tv/main/latinos.m3u</p>
-<p><b>CDN:</b><br>https://cdn.jsdelivr.net/gh/riniestra76-crypto/Master-tv@main/latinos.m3u</p>
-<p><b>EPG:</b><br>https://iptv-org.github.io/epg/guides/mx.xml</p>
+
+<div class="card"><h3>👤 Crear Usuario Final (Cliente)</h3>
+Usuario: <input id="user" placeholder="Ramiro">
+Pass: <input id="pass" placeholder="Master2026">
+Meses: <select id="mes"><option value="1">1 Mes (1 crédito)</option><option value="12">1 Año (12 créditos)</option></select>
+<button onclick="crearUser()">Crear Cliente</button>
 </div>
-</body>
-</html>
+
+<div class="card"><h3>🔗 Tu Lista Maestra BUD TV - Lista Latina Completa</h3>
+<p>Esta es la lista que le das a todos. Ya trae Canales Latinos + Pelis + Series:</p>
+<textarea id="linkLista" style="width:100%;height:60px">https://TU-USUARIO.github.io/master-tv/lista.m3u</textarea>
+<button onclick="copiar()">Copiar Link M3U</button>
+<button onclick="window.open('lista.m3u')">Probar Lista</button>
+</div>
+
+<div class="card"><h3>📋 Sellers y Usuarios Creados</h3><table id="tabla"><tr><th>Usuario</th><th>Tipo</th><th>Creditos</th><th>Link M3U</th></tr></table></div>
+
+<script>
+let creditos = parseInt(localStorage.getItem('master_cred') || '30000');
+document.getElementById('total').innerText = creditos;
+let lista = JSON.parse(localStorage.getItem('master_users') || '[]');
+function guardar(){localStorage.setItem('master_cred',creditos); localStorage.setItem('master_users',JSON.stringify(lista)); document.getElementById('total').innerText=creditos; pintar();}
+function crearSeller(){
+ let u=document.getElementById('sellerUser').value, p=document.getElementById('sellerPass').value, c=parseInt(document.getElementById('sellerCred').value);
+ if(!u) return alert('Pon usuario'); if(creditos<c) return alert('No tienes suficientes créditos');
+ creditos-=c; lista.push({user:u,pass:p,tipo:'SELLER',cred:c, link: location.origin+location.pathname+'lista.m3u?user='+u}); guardar(); alert('Seller '+u+' creado con '+c+' créditos');
+}
+function crearUser(){
+ let u=document.getElementById('user').value, p=document.getElementById('pass').value, m=parseInt(document.getElementById('mes').value);
+ if(!u) return alert('Pon usuario'); if(creditos<m) return alert('No tienes créditos');
+ creditos-=m; lista.push({user:u,pass:p,tipo:'CLIENTE '+m+'M',cred:m, link: location.origin+location.pathname+'lista.m3u?username='+u+'&password='+p}); guardar(); alert('Cliente '+u+' creado');
+}
+function pintar(){ let t=document.getElementById('tabla'); t.innerHTML='<tr><th>Usuario</th><th>Tipo</th><th>Creditos</th><th>Link M3U</th></tr>'; lista.forEach(x=>{t.innerHTML+=`<tr><td>${x.user}</td><td>${x.tipo}</td><td>${x.cred}</td><td style="font-size:11px">${x.link}</td></tr>`})}
+function copiar(){navigator.clipboard.writeText(document.getElementById('linkLista').value); alert('Link copiado');}
+pintar();
+</script></body></html>
