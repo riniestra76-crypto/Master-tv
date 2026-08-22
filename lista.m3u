@@ -1,0 +1,15 @@
+#EXTM3U
+#EXTINF:-1 group-title="🇲🇽 LATINOS MEXICO" tvg-logo="https://i.imgur.com/mx.png",Azteca 7 - MASTER TV
+https://azteca7-ott.izzigo.tv/out/u/dash/AZTECA-7-HD/default.mpd
+#EXTINF:-1 group-title="🇲🇽 LATINOS MEXICO",Televisa Las Estrellas HD
+https://canal2-televisa-ott.izzigo.tv/out/u/dash/CANAL-2-HD/default.mpd
+#EXTINF:-1 group-title="⚽ DEPORTES LATINOS",ESPN 3 Latino
+https://raw.githubusercontent.com/iptv-org/iptv/main/streams/us_espn3.m3u8
+#EXTINF:-1 group-title="🎬 PELICULAS LATINO",Big Buck Bunny - Pelicula HD Latino
+http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+#EXTINF:-1 group-title="🎬 PELICULAS LATINO",Sintel - Estreno 2024 Latino
+http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4
+#EXTINF:-1 group-title="📺 SERIES LATINO",Serie Demo Capitulo 1
+http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4
+#EXTINF:-1 group-title="🇺🇸 LATINOS USA",Univision HD
+https://univision-ott.izzigo.tv/out/u/dash/UNIVISION-HD/default.mpd
